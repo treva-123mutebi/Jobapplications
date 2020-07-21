@@ -13,8 +13,10 @@ include('dist/includes/dbcon.php');
 	$gender = $_POST['gender'];
 	$notes = $_POST['notes'];
 	$skills = $_POST['skills'];
+	$education = $_POST['education'];
 	$coverletter = $_POST['coverletter'];
 	$yearsofexperience= $_POST['yearsofexperience'];
+	$ratingtotal = $skills+$education+$yearsofexperience;
 $target_dir = "cvs/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -56,8 +58,8 @@ if ($uploadOk == 0) {
 		//$pass=$salt.$pass;
 	
 			
-			mysqli_query($con,"INSERT INTO applicants(name,email,phonenumber,dateofbirth,gender,coverletter,yearsofexperience,notes,skills,cv,cat_id,branch_id)
-			VALUES('$name','$email','$phonenumber','$dateofbirth','$gender','$coverletter','$yearsofexperience','$notes','$skills','$target_file','$cat_name','1')")or die(mysqli_error($con));
+			mysqli_query($con,"INSERT INTO applicants(name,email,phonenumber,dateofbirth,gender,coverletter,yearsofexperience,notes,skills,education,ratingtotal,cv,cat_id,branch_id)
+			VALUES('$name','$email','$phonenumber','$dateofbirth','$gender','$coverletter','$yearsofexperience','$notes','$skills','$education','$ratingtotal','$target_file','$cat_name','1')")or die(mysqli_error($con));
 
 			echo "<script type='text/javascript'>alert('Congratulations! Your Job Application has been Submitted.');</script>";
 					  echo "<script>document.location='index.php'</script>";  
